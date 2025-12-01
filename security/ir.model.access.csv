@@ -46,3 +46,5 @@ access_sheq_department_manager,sheq.department.manager,model_sheq_department,bas
 access_sheq_document_template_user,sheq.document.template.user,model_sheq_approved_document_template,base.group_user,1,1,1,0
 access_sheq_document_template_manager,sheq.document.template.manager,model_sheq_approved_document_template,base.group_system,1,1,1,1
 
+access_sheq_audit_user,sheq.audit.user,model_sheq_audit,base.group_user,1,1,1,0
+access_sheq_audit_manager,sheq.audit.manager,model_sheq_audit,base.group_system,1,1,1,1

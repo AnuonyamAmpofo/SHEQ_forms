@@ -49,5 +49,7 @@
     
     <menuitem id="menu_sheq_root" name="SHEQ Documents" sequence="100" parent="menu_tagg_academy_root"/>
     <menuitem id="menu_sheq_approved_documents" name="Approved Documents" parent="menu_sheq_root" action="action_sheq_approved_document" sequence="10"/>
+    <menuitem id="menu_sheq_audits" name="SHEQ Audits" parent="menu_sheq_root" action="action_sheq_audit" sequence="20"/>
+
 </odoo>
     <!-- action_process_evaluation moved to views/tagg_objectives_views.xml for clarity -->

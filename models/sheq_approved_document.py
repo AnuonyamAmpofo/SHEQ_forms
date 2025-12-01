@@ -33,7 +33,8 @@ class SheqApprovedDocument(models.Model):
     # For SHEQ Use Section
     is_physical_form = fields.Boolean(string='Is it a Physical Form?')
     reason_number = fields.Char(string='Reason Number')
-    expected_completeion_date = fields.Date(string='Expected Completion Date')
+    rejection_reason = fields.Text(string='Rejection Reason (SHEQ)')
+    expected_completion_date = fields.Date(string='Expected Completion Date')
 
     # Affected Departments (multi-select). Users can create new departments from the dropdown.
     affected_departments = fields.Many2many(
