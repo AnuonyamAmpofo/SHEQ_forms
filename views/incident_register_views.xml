@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_incident_register_tree" model="ir.ui.view">
+        <field name="name">incident.register.tree</field>
+        <field name="model">incident.register</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="incident_classification"/>
+                <field name="reported_by"/>
+                <field name="incident_date"/>
+                <field name="closure_status"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_incident_register_form" model="ir.ui.view">
+        <field name="name">incident.register.form</field>
+        <field name="model">incident.register</field>
+        <field name="arch" type="xml">
+            <form>
+               <header>
+                    <button name="action_save" string="Save" type="object" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    <button name="%(tagg_academy.action_incident_register)d" string="Back to List" type="action" class="btn-secondary"/>
+                    <field name="closure_status" widget="statusbar" class="oe_right"/>
+                </header>
+
+
+
+
+                
+                <sheet>
+                    <group string="Details of Incident">
+                        <group>
+                            <field name="name" string="Incident Report NO. * \n" class="oe_inline"/>
+                            <field name="incident_classification" string="Incident Report Classification *" class="oe_inline"/>
+                        </group>
+                        <group>
+                            <field name="reported_by" string="Reported By *" class="oe_inline" placeholder="Type then tab"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="description" string="Brief Description *" placeholder="Provide a clear description of the incident..." rows="5"/>
+                        </group>
+                        <group>
+                            <field name="incident_date" string="Date of the Incident *"/>
+                        </group>
+                    </group>
+
+                    <group>
+                        <group>
+                            <field name="date_reported" string="Date Reported to HSE *"/>
+                            <field name="time_of_incident" string="Time of Incident *" widget="float_time"/>
+                        </group>
+                        <group>
+                            <field name="location" string="Location of Incident *" />
+                            <field name="injuries_count" string="Number of Injuries / Illnesses Recorded *"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <group string="Documentation Required">
+                        <group>
+                            <field name="investigation_department" string="Department Responsible for Incident Investigation *"/>
+                        </group>
+                        <group>
+                            <field name="investigation_status" string="Incident Investigation Report Status  *"/>
+                        </group>
+                        <group>
+                            <field name="further_investigation_status" string="Status of Further Investigation Reports (If Needed)"/>
+                            <field name="action_lists_generated" string="Action Lists Generated *"/>
+                        </group>
+                        <group>
+                            <field name="submission_date" string="Submission Date for Incident Investigation Report *"/>
+                            <field name="closure_status" string="Closure Status *"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <group string="Further Actions">
+                        <group>
+                            <field name="employee_discussion_status" string="Status of Discussion with Employees *" placeholder="Type then tab"/>
+                        </group>
+                        <group>
+                            <field name="effectiveness_assessment" string="Assess Effectiveness of All Actions Implemented *" placeholder="Describe the effectiveness of corrective actions..."/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_incident_register" model="ir.actions.act_window">
+        <field name="name">Incident Register</field>
+        <field name="res_model">incident.register</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

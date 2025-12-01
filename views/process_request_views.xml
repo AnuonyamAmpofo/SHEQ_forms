@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View -->
+    <record id="view_tagg_process_request_tree" model="ir.ui.view">
+        <field name="name">tagg.process.request.tree</field>
+        <field name="model">tagg.process.request</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name" string="Reference"/>
+                <field name="tagg_process_name" string="Process Name"/>
+                <field name="employee" string="Employee"/>
+                <field name="department_id" string="Department"/>
+                <field name="state" string="Status"/>
+                <field name="create_date" string="Created Date"/>
+            </list>
+        </field>
+    </record>
+
+
+    <record id="view_tagg_process_request_form" model="ir.ui.view">
+        <field name="name">tagg.process.request.form</field>
+        <field name="model">tagg.process.request</field>
+        <field name="arch" type="xml">
+            <form string="TAGG Process Request">
+                <header>
+                    <button name="action_save" type="object" string="Save" class="btn-primary"/>
+                    <button name="action_cancel" type="object" string="Cancel" class="btn-secondary"/>
+                        <button name="action_submit_for_approval" type="object" string="Submit for Approval" 
+                            class="btn-primary" modifiers="{'invisible': [('state', '!=', 'new')]}"/>
+                    <field name="state" widget="statusbar" statusbar_visible="new,submitted,approved,rejected"/>
+                </header>
+                
+                <sheet>
+                    <group>
+                        <group string="General" colspan="4" col="2">
+                            <group col="2">
+                            <field name="employee" required="1"/>
+                            <field name="hubat_daudi"/>
+
+                            </group>
+                            <group col="2">
+                            
+                                    <field name="department_id" required="1"/>
+                                    <field name="subsidiary_id" required="1"/>
+                                
+                              
+                                    <field name="state" readonly="1"/>
+                            </group>
+                        </group>
+                        
+                    </group>
+
+                    <separator/>
+
+
+                    <group string="Details" colspan="4" col="2">
+                            <group col="2">
+                                <field name="type_of_request" required="1"/>
+                                <field name="tagg_process_name"/>
+                            </group>
+                            <group col="2">
+                                    <field name="tagg_process" />
+
+                                    <field name="reason_for_request" required="1"/>
+                            </group>
+                        </group>
+                    <separator/>
+                    <group string="For SHEQ use">
+                        <group>
+                            <field name="requires_change_management" string="Does it require Change Management"/>
+                            
+                            
+                                    <field name="rejection_reason"/>
+                                
+                        </group>
+                    </group>
+                    
+                    <group string="Files &amp; Notes">
+                        <field name="note" string="Notes"/>
+                        
+                            <field name="attachment_ids" widget="many2many_binary"/>
+                        
+                    </group>
+
+                    
+                    
+                    
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Search View -->
+    <record id="view_tagg_process_request_search" model="ir.ui.view">
+        <field name="name">tagg.process.request.search</field>
+        <field name="model">tagg.process.request</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name" string="Reference"/>
+                <field name="tagg_process_name" string="Process Name"/>
+                <field name="employee" string="Employee"/>
+                <field name="state" string="Status"/>
+                <filter string="New" name="new" domain="[('state', '=', 'new')]"/>
+                <filter string="Submitted" name="submitted" domain="[('state', '=', 'submitted')]"/>
+                <filter string="Approved" name="approved" domain="[('state', '=', 'approved')]"/>
+                <filter string="Rejected" name="rejected" domain="[('state', '=', 'rejected')]"/>
+                
+            </search>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_tagg_process_request" model="ir.actions.act_window">
+        <field name="name">TAGG Process Requests</field>
+        <field name="res_model">tagg.process.request</field>
+        <field name="view_mode">list,form</field>
+        <field name="view_id" ref="view_tagg_process_request_tree"/>
+        <field name="search_view_id" ref="view_tagg_process_request_search"/>
+        <field name="context">{'search_default_new': 1}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new TAGG Process Request
+            </p>
+        </field>
+    </record>
+</odoo>

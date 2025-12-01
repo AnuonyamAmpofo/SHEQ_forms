@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem id="menu_tagg_academy_root" name="SHEQ" sequence="10"/>
+    
+
+ 
+    <menuitem id="menu_incident_management" name="Incident Management" 
+              parent="menu_tagg_academy_root" sequence="20"/>
+    <menuitem id="menu_incident_register" name="Incident Register" 
+              parent="menu_incident_management" 
+              action="action_incident_register" sequence="10"/>
+              
+    <menuitem id="menu_objectives_management" name="Objectives Management" 
+              parent="menu_tagg_academy_root" sequence="20"/>
+    <menuitem id="menu_tagg_objectives" name="Objectives" 
+              parent="menu_objectives_management" 
+              action="action_tagg_objectives" sequence="10"/>
+    
+    <menuitem id="menu_process_evaluation_root" name="Process Evaluation Management" 
+              parent="menu_tagg_academy_root" sequence="20"/>
+    <!-- <menuitem id="menu_process_evaluation" name="Process Evaluation" 
+              parent="menu_tagg_academy_root" sequence="30"/> -->
+    <menuitem id="menu_tagg_process_evaluation" name="Process Evaluation" 
+              parent="menu_process_management" 
+              action="action_tagg_process_evaluation" sequence="10"/>
+
+    <menuitem id="menu_process_management" name="Process Management" 
+                  parent="menu_tagg_academy_root" sequence="40"/>
+        <menuitem id="menu_tagg_process" name="TAGG Processes" 
+                  parent="menu_process_management" 
+                  action="action_tagg_process" sequence="10"/>
+
+    
+    <!-- <menuitem id="menu_tagg_process_request_root" name="Process Requests" 
+            parent="" sequence="20"/> -->
+    <menuitem id="menu_tagg_process_request" name="Process Requests" 
+              parent="menu_process_management" 
+              action="action_tagg_process_request" sequence="10"/>
+
+    <menuitem id="menu_toolbox_meeting" name="Toolbox Meetings" parent="menu_tagg_academy_root" action="action_toolbox_meeting" sequence="50"/>
+
+    <menuitem 
+        id="menu_testing_tools" 
+        name="Testing Tools Inventory" 
+        parent="menu_tagg_academy_root" 
+        action="action_testing_tool" 
+        sequence="20"/>
+
+    
+    <menuitem id="menu_sheq_root" name="SHEQ Documents" sequence="100" parent="menu_tagg_academy_root"/>
+    <menuitem id="menu_sheq_approved_documents" name="Approved Documents" parent="menu_sheq_root" action="action_sheq_approved_document" sequence="10"/>
+</odoo>
+    <!-- action_process_evaluation moved to views/tagg_objectives_views.xml for clarity -->

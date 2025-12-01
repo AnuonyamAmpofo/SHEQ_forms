@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="seq_tagg_objectives" model="ir.sequence">
+            <field name="name">TAGG Objectives</field>
+            <field name="code">tagg.objectives.sequence</field>
+            <field name="prefix">OBJ</field>
+            <field name="padding">4</field>
+            <field name="number_next">1</field>
+        </record>
+    </data>
+</odoo>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="view_sheq_approved_document_form" model="ir.ui.view">
+        <field name="name">sheq.approved.document.form</field>
+        <field name="model">sheq.approved.document</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit" string="Submit" type="object" class="btn-primary"/>
+                    <button name="action_save" string="Save" type="object" class="btn-secondary"/>
+                    <button name="action_cancel" string="Cancel" type="object" class="btn-secondary"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group string="General" colspan="4" col="2">
+                            <group>
+                                <field name="author"/>
+                                <field name="manager_id"/>
+                                <field name="department"/>
+                            </group>
+                            <group>
+                                <field name="name" placeholder="NAME OF RECORD"/>
+                                <field name="document_type"/>
+                                <field name="related_oms_process" placeholder="Related OMS Process"/>
+                                <field name="document_status" readonly="1"/>
+                                <field name="date" readonly="1"/>
+                            </group>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <group string="Details" colspan="4" col="2">
+                        <group>
+                            <field name="description_of_request" placeholder="DESCRIPTION OF REQUEST" nolabel="0"/>
+                            <field name="description_of_workflow" placeholder="DESCRIPTION OF WORKFLOW" nolabel="0"/>
+                        </group>
+                        <group>
+                            <field name="reason_not_on_odoo" placeholder="STATE REASON WHY FORM CANNOT BE ON ODOO" nolabel="0"/>
+                        </group>
+                    </group>
+                    <separator/>
+
+                    <group string="For SHEQ Use">
+                        <group>
+                            <field name="is_physical_form"/>
+                            <field name="reason_number" placeholder="REASON NUMBER"/>
+                        </group>
+                        <separator/>
+
+                        <group string="Affected Departments" colspan="4" col="2">
+                            <group>
+                                <div style="max-height:200px; overflow:auto; padding:4px;">
+                                    <h6>Select Affected Departments</h6>
+                                    <field name="affected_departments" widget="many2many_checkboxes" domain="[('active','=', True)]" nolabel="0"/>
+                                </div>
+                            </group>
+
+                            <group colspan="4">
+                                <group col="2">
+                                    <field name="affected_manager_1"/>
+                                    <field name="affected_manager_2"/>
+                                    <field name="affected_manager_3"/>
+                                    <field name="affected_manager_4"/>
+                                    <field name="affected_manager_5"/>
+                                </group>
+                                <group col="2">
+                                    <field name="affected_manager_6"/>
+                                    <field name="affected_manager_7"/>
+                                    <field name="affected_manager_8"/>
+                                    <field name="affected_manager_9"/>
+                                    <field name="affected_manager_10"/>
+                                </group>
+                            </group>
+                        </group>
+                        <separator/>
+
+                        <notebook>
+                            <page string="Attachments Templates">
+                                <group>
+                                    <label for="template_attachment_ids" string="Templates" class="o_form_label"/>
+                                    <field name="template_attachment_ids" 
+                                           context="{'default_res_model': 'sheq.approved.document', 'default_res_id': id}" 
+                                           widget="many2many_binary"/>
+                                </group>
+                            </page>
+
+                            <page string="Evaluation">
+                                <group>
+                                    <field name="document_status" readonly="1"/>
+                                    <field name="date" readonly="1"/>
+                                    <field name="related_oms_process"/>
+                                </group>
+                                <group>
+                                    <label for="description_of_workflow" string="Evaluation notes" class="o_form_label"/>
+                                    <field name="description_of_workflow" nolabel="1"/>
+                                </group>
+                            </page>
+
+                            <page string="Pages">
+                                <group>
+                                    <label for="reason_not_on_odoo" string="Additional pages or links" class="o_form_label"/>
+                                    <field name="reason_not_on_odoo" nolabel="1"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="view_sheq_approved_document_list" model="ir.ui.view">
+        <field name="name">sheq.approved.document.list</field>
+        <field name="model">sheq.approved.document</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="document_type"/>
+                <field name="document_status"/>
+                <field name="author"/>
+                <field name="date"/>
+            </list>
+        </field>
+    </record>
+
+    <!-- Action -->
+    <record id="action_sheq_approved_document" model="ir.actions.act_window">
+        <field name="name">SHEQ Approved Documents</field>
+        <field name="res_model">sheq.approved.document</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

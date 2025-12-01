@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_tagg_objectives_list" model="ir.ui.view">
+        <field name="name">tagg.objectives.list</field>
+        <field name="model">tagg.objectives</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="objective_type"/>
+                <field name="subsidiary"/>
+                <field name="department"/>
+                <field name="status"/>
+                <field name="date"/>
+                <button name="action_open_form" type="object" string="Open" class="oe_stat_button"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="view_tagg_objectives_form" model="ir.ui.view">
+        <field name="name">tagg.objectives.form</field>
+        <field name="model">tagg.objectives</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_submit_approval" string="Submit for Approval" type="object" class="btn-primary" modifiers="{'invisible': [('status', '=', 'submitted')]}"/>
+                    
+                    <button string="Save" special="save" class="btn-primary"/>
+                    <button string="Cancel" special="cancel" class="btn-secondary"/>
+                    <button name="%(tagg_academy.action_tagg_objectives)d" type="action" string="Back to List" class="btn-secondary"/>
+                    <field name="status" widget="statusbar" statusbar_visible="new,draft,submitted,approved,rejected" class="oe_right"/>
+                </header>
+                
+                <sheet>
+                    <!-- General Section -->
+                    <group string="General">
+                        <group>
+                            <field name="objective_type" string="TYPE OF OBJECTIVES *"/>
+                            <field name="subsidiary" string="SUBSIDIARY *"/>
+                        </group>
+                        <group>
+                            <field name="department" string="DEPARTMENT"/>
+                            <field name="revision_number" string="REVISION NUMBER *"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <!-- Details Section -->
+                    <group string="Details">
+                        <group>
+                            <field name="compiled_by_id" string="COMPILED BY *"/>
+                            <field name="compiled_by_designation" string="COMPILED BY (DESIGNATION) *"/>
+                        </group>
+                        <group>
+                            <field name="reference_year" string="REFERENCE YEAR *" options="{'enable_formatting': false}"/>
+                            <field name="date" string="DATE *"/>
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                    <!-- Rejection Reason Section -->
+                    <group string="Rejection Reason">
+                        <group>
+                            <field name="rejection_reason" string="REJECTION REASON (CEO)"/>
+                            
+                        </group>
+                    </group>
+
+                    <separator/>
+
+                   <notebook>
+                       <page string="Objectives">
+                    <group string="Objectives">
+                        <!-- <div class="o_form_label" string="Acceptance of Draft"/> -->
+                        <!-- <group>
+                            <field name="objective_what" string="WHAT WILL BE OUR ACTIONS TO BECOME WHEN MEETING"/>
+                            <field name="due_date" string="DUE DATE"/>
+                        </group>
+                        <group>
+                            <field name="how_results_measured" string="HOW WILL RESULTS BE MEASURED"/>
+                            <field name="which_result_emulated" string="WHICH RESULT WILL BE EMULATED"/>
+                        </group>
+                        <group>
+                            <field name="resources" string="RESOURCES"/>
+                            <field name="responsibility" string="RESPONSIBILITY"/>
+                        </group>
+                        <group>
+                            <field name="experimental" string="EXPERIMENTAL"/>
+                            <field name="pm_q1" string="PM Q1"/>
+                            <field name="pm_q2" string="PM Q2"/>
+                            <field name="pm_q3" string="PM Q3"/>
+                            <field name="pm_q4" string="PM Q4"/>
+                            <field name="final_year" string="FINAL YEAR"/>
+                        </group> -->
+                    </group>
+                          </page>
+                   </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_tagg_objectives" model="ir.actions.act_window">
+        <field name="name">Objectives</field>
+        <field name="res_model">tagg.objectives</field>
+        <field name="view_mode">list,form</field>
+    </record>
+</odoo>

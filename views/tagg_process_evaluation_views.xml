@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_tagg_process_evaluation_form" model="ir.ui.view">
+            <field name="name">tagg.process.evaluation.form</field>
+            <field name="model">tagg.process.evaluation</field>
+            <field name="arch" type="xml">
+                <form string="TAGG Process Evaluation">
+                    <header>
+                        <button name="action_complete" type="object" string="Save" class="btn-primary"/>
+                        <button name="action_cancel" type="object" string="Cancel" class="btn-secondary"/>
+                    </header>
+                    
+                    <sheet>
+                        <notebook>
+
+                            <page string="Process Evaluation">
+
+                                <group>
+                                    <group>
+                                        <field name="qms_process" placeholder="Select QMS Process" required="1"/>
+                                        <field name="number_of_ncs" class="oe_inline"/>
+                                        <field name="process_score"/>
+                                        <field name="comments" placeholder="Enter comments"/>
+                                    </group>
+
+                                    <group>
+                                        <field name="process_owner_id" string="PROCESS OWNER"/>
+                                        <field name="evaluation_date" string="EVALUATION DATE"/>
+                                        <field name="period_of_assessment_from" string="PERIOD OF ASSESSMENT FROM"/>
+                                        <field name="period_of_assessment_to" string="TO"/>
+                                    </group>
+                                </group>
+
+
+                                <group>
+                                    <button name="action_remove_all_main_data" type="object" string="Remove all" class="btn-warning"/>
+                                </group>
+
+                                <separator/>
+
+
+                                <group string="Task Entries" colspan="2">
+                                    <field name="task_ids" nolabel="1" context="{'default_process_evaluation_id': id}">
+                                        <list editable="bottom" create="true" delete="true">
+                                            <field name="title" string="TITLE" required="1"/>
+                                            <field name="memo" string="MEMO"/>
+                                            <field name="date" string="DATE"/>
+                                            <field name="time" widget="float_time" string="TIME"/>
+                                            <field name="type" string="TYPE"/>
+                                            <field name="direction" string="DIRECTION"/>
+                                        </list>
+                                        <form>
+                                            <group>
+                                                <field name="title" string="TITLE" required="1"/>
+                                                <field name="memo" string="MEMO"/>
+                                                <field name="date" string="DATE"/>
+                                                <field name="time" widget="float_time" string="TIME"/>
+                                                <field name="type" string="TYPE"/>
+                                                <field name="direction" string="DIRECTION"/>
+                                            </group>
+                                        </form>
+                                    </field>
+                                </group>
+                            </page>
+
+                            <!-- Remove the separate Task Entries tab since tasks are now in the main tab -->
+                        </notebook>
+
+                        <!-- Main Save/Cancel Buttons -->
+                        <!-- <footer>
+                            <button name="action_complete" type="object" string="Save" class="btn-primary"/>
+                            <button name="action_cancel" type="object" string="Cancel" class="btn-secondary"/>
+                        </footer> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record id="view_tagg_process_evaluation_tree" model="ir.ui.view">
+            <field name="name">tagg.process.evaluation.tree</field>
+            <field name="model">tagg.process.evaluation</field>
+            <field name="arch" type="xml">
+                <list string="Process Evaluations">
+                    <field name="name" string="ID"/>
+                    <field name="qms_process" string="QMS Process"/>
+                    <field name="process_owner_id" string="Process Owner"/>
+                    <field name="evaluation_date" string="Evaluation Date"/>
+                    <field name="process_score" string="Process Score"/>
+                    <field name="status" string="Status"/>
+                </list>
+            </field>
+        </record>
+
+      
+        <record id="action_tagg_process_evaluation" model="ir.actions.act_window">
+            <field name="name">Process Evaluations</field>
+            <field name="res_model">tagg.process.evaluation</field>
+            <field name="view_mode">list,form</field>
+            <field name="context">{'search_default_draft': 1}</field>
+        </record>
+    </data>
+</odoo>

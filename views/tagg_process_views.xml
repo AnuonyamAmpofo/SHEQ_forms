@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- =============================
+             FORM VIEW: TAGG Process
+        ============================== -->
+        <record id="view_tagg_process_form" model="ir.ui.view">
+            <field name="name">tagg.process.form</field>
+            <field name="model">tagg.process</field>
+            <field name="arch" type="xml">
+                <form string="TAGG Process">
+                    <header>
+                        <button name="action_save" type="object" string="Save" class="oe_highlight"/>
+                        <button name="action_cancel" type="object" string="Cancel"/>
+                        <button name="action_submit_sheq" type="object" string="Submit to SHEQ" class="oe_highlight"/>
+                        <button name="action_void" type="object" string="Void" class="btn-warning"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,void"/>
+                    </header>
+
+                    <sheet>
+                        <!-- ========== GENERAL SECTION ========== -->
+                        <group string="General" colspan="4" col="2">
+                            <group col="2">
+                                <field name="name" string="Name" required="1"/>
+                                <field name="process_category" string="Process Category" required="1"/>
+                                <field name="related_change_management" string="Related Change Management"/>
+                                <field name="subsidiary_id" string="Subsidiary" required="1"/>
+                                <field name="department_id" string="Department" required="1"/>
+                            </group>
+
+                            <group col="2">
+                                <field name="input_source" string="Input Source" required="1"/>
+                                <field name="process_input" string="Process Input" required="1"/>
+                                <field name="process_outputs" string="Process Outputs" required="1"/>
+                                <field name="recipients_of_outputs" string="Recipients of Outputs" required="1"/>
+                                <field name="status" readonly="1"/>
+                            </group>
+                        </group>
+
+                        <separator/>
+
+                        <!-- ========== DETAILS SECTION ========== -->
+                        <group string="Details" colspan="4" col="2">
+                            <group col="2">
+                                <field name="persons_responsible" string="Person(s) Responsible" required="1"/>
+                                <field name="process_objectives" string="Process Objectives" required="1"/>
+                                <field name="resources_required" string="Resources Required" required="1"/>
+                            </group>
+
+                            <group col="2">
+                                <field name="associated_sops" string="Associated SOP(s)"/>
+                                <field name="associated_guidelines" string="Associated Guideline(s)"/>
+                                <field name="associated_policies" string="Associated Policies"/>
+                                <field name="process_diagram" string="Process Diagram"/>
+                            </group>
+                        </group>
+                        <separator/>
+
+                        <!-- ========== NOTEBOOK SECTION ========== -->
+                        <notebook>
+                            <!-- ===== Process QMS Risk ===== -->
+                            <page string="Process QMS Risk">
+                                <field name="qms_risk_ids" nolabel="1">
+                                    <list editable="bottom" create="true" delete="true">
+                                        <field name="year"/>
+                                        <field name="risk_description"/>
+                                        <field name="likelihood_of_risk"/>
+                                        <field name="severity_of_impact"/>
+                                        <field name="risk"/>
+                                        <field name="risk_priority"/>
+                                        <field name="existing_controls"/>
+                                        <field name="further_controls_required"/>
+                                        <field name="resources_for_controls"/>
+                                        <field name="owner"/>
+                                        <field name="timescale_for_actions"/>
+                                    </list>
+                                </field>
+                            </page>
+                            <separator/>
+
+                            <!-- ===== Process HSE Risk ===== -->
+                            <page string="Process HSE Risk">
+                                <field name="hse_risk_ids" nolabel="1">
+                                    <list editable="bottom" create="true" delete="true">
+                                        <field name="year"/>
+                                        <field name="process_performance_location"/>
+                                        <field name="activity"/>
+                                        <field name="risk_description"/>
+                                        <field name="affected_parties"/>
+                                        <field name="likelihood_of_risk"/>
+                                        <field name="severity_of_impact"/>
+                                        <field name="risk"/>
+                                        <field name="risk_priority"/>
+                                        <field name="existing_controls"/>
+                                        <field name="further_controls_required"/>
+                                        <field name="resources_for_controls"/>
+                                        <field name="risk_management_approach"/>
+                                        <field name="timescale_for_actions"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- ===== Process Opportunities ===== -->
+                            <page string="Process Opportunities">
+                                <field name="opportunity_ids" nolabel="1">
+                                    <list editable="bottom" create="true" delete="true">
+                                        <field name="entry_date" required="1"/>
+                                        <field name="identified_opportunity"/>
+                                        <field name="means_to_take_advantage"/>
+                                        <field name="deadline"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- ===== Applicable Laws ===== -->
+                            <page string="Applicable Laws">
+                                <field name="legal_requirement_ids" nolabel="1">
+                                    <list editable="bottom" create="true" delete="true">
+                                        <field name="legal_requirement" required="1"/>
+                                        <field name="specific_law_or_regulation"/>
+                                        <field name="institution"/>
+                                    </list>
+                                </field>
+                            </page>
+
+                            <!-- ===== Files ===== -->
+                            <page string="Files">
+                                <group>
+                                    <field name="files" widget="many2many_binary" string="Files"/>
+                                </group>
+                            </page>
+
+                            <!-- ===== Notes ===== -->
+                            <page string="Notes">
+                                <field name="notes" widget="text" placeholder="Enter any notes here..."/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <!-- =============================
+             LIST VIEW
+        ============================== -->
+        <record id="view_tagg_process_list" model="ir.ui.view">
+            <field name="name">tagg.process.list</field>
+            <field name="model">tagg.process</field>
+            <field name="arch" type="xml">
+                <list string="TAGG Processes">
+                    <field name="name"/>
+                    <field name="process_category"/>
+                    <field name="subsidiary_id"/>
+                    <field name="department_id"/>
+                    <field name="state"/>
+                </list>
+            </field>
+        </record>
+
+        <!-- =============================
+             ACTION
+        ============================== -->
+        <record id="action_tagg_process" model="ir.actions.act_window">
+            <field name="name">TAGG Processes</field>
+            <field name="res_model">tagg.process</field>
+            <field name="view_mode">list,form</field>
+        </record>
+
+        <!-- =============================
+             MENU ITEMS
+        ============================== -->
+        <!--
+        <menuitem id="menu_tagg_process_root" name="Process Management" sequence="10"/>
+        <menuitem id="menu_tagg_process" name="TAGG Processes"
+                  parent="menu_tagg_process_root" action="action_tagg_process" sequence="10"/>
+        -->
+    </data>
+</odoo>
