@@ -9,31 +9,31 @@ class SHEQAudit(models.Model):
     auditor = fields.Many2one('res.users', string='AUDITOR', required=True, default=lambda self: self.env.user)
     
     # Details section
-    audit_type = fields.Char(string='AUDIT TYPE')
-    audit_area = fields.Char(string='AUDIT AREA/PROCESS')
-    audit_start_time = fields.Char(string='AUDIT START TIME')
+    audit_type = fields.Char(string='AUDIT TYPE', required=True)
+    audit_area = fields.Char(string='AUDIT AREA/PROCESS', required=True)
+    audit_start_time = fields.Char(string='AUDIT START TIME', required=True)
     audit_id = fields.Char(string='ID', default='To Be Generated', readonly=True)
     
 
     note = fields.Text(string='Notes')
     
 
-    lead_auditor = fields.Many2one('hr.employee', string='LEAD AUDITOR')
-    department = fields.Many2one('hr.department', string='DEPARTMENT')
-    auditee = fields.Many2one('hr.employee', string='AUDITEE')
+    lead_auditor = fields.Many2one('hr.employee', string='LEAD AUDITOR', required=True)
+    department = fields.Many2one('hr.department', string='DEPARTMENT', required=True)
+    auditee = fields.Many2one('hr.employee', string='AUDITEE', required=True)
     subsidiary = fields.Many2one('res.company', string='SUBSIDIARY', default=lambda self: self.env.user.company_id)
 
    
     subsidiary = fields.Many2one(
     'res.company',
     string='SUBSIDIARY',  
-    default=lambda self: self.env.company,  # Changed to env.company
+    default=lambda self: self.env.company,  
     required=True
 )
     
     # Bottom section
-    audit_end_time = fields.Char(string='AUDIT END TIME')
-    audit_date = fields.Date(string='AUDIT DATE')
+    audit_end_time = fields.Char(string='AUDIT END TIME', required=True)
+    audit_date = fields.Date(string='AUDIT DATE', required=True, default=fields.Date.today)
     audit_status = fields.Selection([
         ('open', 'Open'),
         ('closed', 'Closed')
@@ -49,7 +49,7 @@ class SHEQAudit(models.Model):
     # Simple actions
     def action_save(self):
         if self.audit_id == 'To Be Generated':
-            self.audit_id = 'AUD/' + str(self.id)
+            self.audit_id = 'AUD/' + str(self.id).zfill(4)
         return True
     
     def action_cancel(self):

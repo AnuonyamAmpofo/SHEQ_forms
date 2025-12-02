@@ -73,12 +73,7 @@
                                         <field name="datas" filename="name" string="File" readonly="1" widget="binary"/>
                                         <field name="file_size" string="Size (Bytes)"/>
                                         <field name="mimetype" string="File Type"/>
-                                        <field name="create_date" string="Uploaded Date"/>
-                                        <field name="write_date" string="Last Modified"/>
-                                        <button name="unlink" type="object" string="Remove" class="btn-danger"/>
-                                    </list>
-                                </field>
-                            </group>
+                                        <field name="create_date" string="Uploaded Date"/> <field name="write_date" string="Last Modified"/> <button name="unlink" type="object" string="Remove" class="btn-danger"/> </list> </field> </group>
                         </page>
 
 
