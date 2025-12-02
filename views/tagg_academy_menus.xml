@@ -30,19 +30,20 @@
                   parent="menu_process_management" 
                   action="action_tagg_process" sequence="10"/>
 
-    
+    <menuitem id="Tools" name="Tools" 
+              parent="menu_tagg_academy_root" sequence="60"/>
     <!-- <menuitem id="menu_tagg_process_request_root" name="Process Requests" 
             parent="" sequence="20"/> -->
     <menuitem id="menu_tagg_process_request" name="Process Requests" 
               parent="menu_process_management" 
               action="action_tagg_process_request" sequence="10"/>
 
-    <menuitem id="menu_toolbox_meeting" name="Toolbox Meetings" parent="menu_tagg_academy_root" action="action_toolbox_meeting" sequence="50"/>
+    <menuitem id="menu_toolbox_meeting" name="Toolbox Meetings" parent="Tools" action="action_toolbox_meeting" sequence="50"/>
 
     <menuitem 
         id="menu_testing_tools" 
         name="Testing Tools Inventory" 
-        parent="menu_tagg_academy_root" 
+        parent="Tools" 
         action="action_testing_tool" 
         sequence="20"/>
 
@@ -50,6 +51,9 @@
     <menuitem id="menu_sheq_root" name="SHEQ Documents" sequence="100" parent="menu_tagg_academy_root"/>
     <menuitem id="menu_sheq_approved_documents" name="SHEQ Approved Documents" parent="menu_sheq_root" action="action_sheq_approved_document" sequence="10"/>
     <menuitem id="menu_sheq_audits" name="SHEQ Audits" parent="menu_sheq_root" action="action_sheq_audit" sequence="20"/>
+    
+    <menuitem id="menu_site_inspection" name="Site Inspections" parent="menu_sheq_root" action="action_site_inspection" sequence="30"/>
 
+    <menuitem id="menu_stakeholder_engagement_plan" name="Stakeholder Engagement Plans" parent="menu_sheq_root" action="action_stakeholder_engagement" sequence="40"/>
 </odoo>
     <!-- action_process_evaluation moved to views/tagg_objectives_views.xml for clarity -->

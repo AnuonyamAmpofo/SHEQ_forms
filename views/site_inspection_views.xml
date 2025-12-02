@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Form View -->
+        <record id="view_site_inspection_form" model="ir.ui.view">
+            <field name="name">site.inspection.form</field>
+            <field name="model">site.inspection</field>
+            <field name="arch" type="xml">
+                <form string="Site Inspection Report">
+                    <header>
+                        <button name="action_save" string="Save" type="object" class="btn-primary"/>
+                        <button special="cancel" string="Cancel" class="btn-secondary"/>
+                    </header>
+                    
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>Site Inspection Report</h1>
+                        </div>
+                        
+                        <!-- General Information -->
+                        <group string="General Information">
+                            <group>
+
+                                <field name="project_id" placeholder="Type then tab"/>
+                           
+
+                                <field name="person_responsible" placeholder="Type then tab"/>
+
+
+                                <field name="inspected_by"/>
+                            </group>
+                            <group>
+
+                                <field name="project_manager" placeholder="Type then tab"/>
+
+
+                                <field name="project_consultant" placeholder="Type then tab"/>
+
+
+                                <field name="date_of_inspection"/>
+                            </group>
+                        </group>
+                        
+                        <!-- Checks Section -->
+                        <group string="Checks">
+                            <group>
+
+                                <field name="previous_nc_deviation"/>
+                        
+
+                                <field name="previous_nc_compliance"/>
+                                <field name="previous_nc_availability"/>
+                            </group>
+                             <group>
+
+                                <field name="inspection_deviation"/>
+
+
+                                <field name="inspection_compliance"/>
+
+
+                                <field name="inspection_availability"/>
+                            </group>
+                        </group>
+                        
+                        <!-- Remarks -->
+                        <group string="Remarks">
+                        <group>
+                            <field name="previous_nc_remarks" />
+                        </group>
+                        <group>
+                            <field name="inspection_remarks" />
+                        </group>
+                        <group>
+
+                            <field name="report_id" readonly="1"/>
+                        </group>
+                        </group>
+                        
+                        <separator/>
+                        
+                        <group string="Additional Comment">
+                            <field name="additional_comment" placeholder="Enter additional comments here..." style="height: 100px;"/>
+                        </group>
+
+
+                        
+                        <notebook>
+
+                            <page string="Files">
+                                <group>
+                                    <field name="attachment_ids" 
+                                        widget="many2many_binary" 
+                                        string="Upload Files"
+                                        context="{'default_res_model': 'testing.tool', 'default_res_id': id}"
+                                        colspan="4"/>
+                                </group>
+                                
+                                
+                                <group string="File Details" colspan="4">
+                                    <field name="attachment_ids" colspan="4">
+                                        <list editable="bottom" 
+                                            create="0" 
+                                            delete="0" 
+                                            string="Attached Files"
+                                            default_order="create_date desc">
+                                            <field name="name" string="File Name"/>
+                                            <field name="datas" filename="name" string="File" readonly="1" widget="binary"/>
+                                            <field name="file_size" string="Size (Bytes)"/>
+                                            <field name="mimetype" string="File Type"/>
+                                            <field name="create_date" string="Uploaded Date"/>
+                                            <field name="write_date" string="Last Modified"/>
+                                            <button name="unlink" type="object" string="Remove" class="btn-danger"/>
+                                        </list>
+                                    </field>
+                                </group>
+                            </page>
+
+
+                            <page string="Notes">
+                                <group colspan="4">
+                                    <field name="notes" nolabel="1" placeholder="Enter your notes here..." style="height: 300px;"/>
+                                </group>
+                            </page>
+                        </notebook>
+                        
+
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <!-- Simple List View -->
+        <record id="view_site_inspection_tree" model="ir.ui.view">
+            <field name="name">site.inspection.list</field>
+            <field name="model">site.inspection</field>
+            <field name="arch" type="xml">
+                <list string="Site Inspections">
+                    <field name="report_id"/>
+                    <field name="project_id"/>
+                    <field name="date_of_inspection"/>
+                    <field name="inspected_by"/>
+                </list>
+            </field>
+        </record>
+        
+        <!-- Simple Action -->
+        <record id="action_site_inspection" model="ir.actions.act_window">
+            <field name="name">Site Inspections</field>
+            <field name="res_model">site.inspection</field>
+            <field name="view_mode">list,form</field>
+        </record>
+        
+        <!-- Menu -->
+        
+    </data>
+</odoo>

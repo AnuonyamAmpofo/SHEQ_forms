@@ -23,6 +23,11 @@
         <field name="arch" type="xml">
             <form string="Testing Tool">
                 <sheet>
+                     <div class="oe_title">
+                            <h1>Testing Tool Inventory</h1>
+                        </div>
+
+                    <separator/>
 
                     <group>
                         <group>
@@ -38,6 +43,7 @@
                         </group>
                     </group>
                     
+                    <separator/>
 
                     <group string="File Summary" colspan="2">
                         <group>

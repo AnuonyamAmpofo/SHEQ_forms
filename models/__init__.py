@@ -18,3 +18,5 @@ from . import toolbox_meeting
 from . import testing_tools_inventry
 from . import sheq_approved_document
 from . import sheq_audit_form
+from . import site_inspection
+from . import stakeholders_engagement_plan

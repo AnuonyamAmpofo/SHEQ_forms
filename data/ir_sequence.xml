@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sequence for Stakeholder Engagement Plan -->
+    <record id="seq_stakeholders_engagement_plan" model="ir.sequence">
+        <field name="name">Stakeholder Engagement Plan Reference</field>
+        <field name="code">stakeholders.engagement.plan</field>
+        <field name="prefix">SEP/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="company_id" eval="False"/>
+    </record>
+</odoo>

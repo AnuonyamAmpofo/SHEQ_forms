@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Form View -->
+    <record id="view_stakeholder_engagement_form" model="ir.ui.view">
+        <field name="name">stakeholder.engagement.form</field>
+        <field name="model">stakeholders.engagement.plan</field>
+        <field name="arch" type="xml">
+            <form string="Stakeholder Engagement Plan">
+                <header>
+                    <button name="action_save" string="Save" type="object" class="btn-primary"/>
+                    <button name="action_cancel" string="Cancel" type="object"/>
+
+                    <button name="action_submit" string="Submit for Approval" type="object" class="btn-primary"
+                        invisible="state != 'draft'"/>
+                    
+                   
+                    
+                    <field name="state" widget="statusbar" statusbar_visible="draft,submitted,approved,rejected"/>
+                </header>
+                
+                <sheet>
+                    <!-- Title and Reference -->
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" string="Reference" readonly="1"/>
+                        </h1>
+                        <h2>Stakeholder Engagement Plan</h2>
+                    </div>
+                    
+                    <!-- Year Field -->
+                    <group>
+                        <group>
+                            <label for="year" string="YEAR *"/>
+                            <field name="year" nolabel="1" widget="selection" class="oe_inline"/>
+                        </group>
+                    </group>
+                    
+                    <separator string="Plan"/>
+
+                    
+                    <!-- Engagement Lines -->
+                    <field name="engagement_line_ids">
+                        <list string="Engagement Activities" editable="bottom">
+                            <!-- CHANGED: bit_ready to is_ready -->
+                            
+                            <field name="stakeholder_group"/>
+                            <field name="method_of_exploration"/>
+                            <field name="date"/>
+                            <field name="responsible_person_id"/>
+                            <field name="report_ready_date"/>
+                            <field name="is_ready" string="IS IT READY?"/>
+                            <field name="report_attachment_ids" string="ATTACH REPORT" widget="many2many_binary"/>
+
+                        </list>
+                        
+                        <form string="Engagement Activity">
+                            <group>
+                                <group>
+                                    <field name="stakeholder_group"/>
+                                    <field name="method_of_exploration"/>
+                                    <field name="date"/>
+                                </group>
+                                <group>
+                                    <field name="responsible_person_id"/>
+                                    <field name="report_ready_date"/>
+                                    <field name="is_ready" string="IS IT READY?"/>
+                                </group>
+                            </group>
+                            
+                            <group>
+                                <group>
+                                    <label for="notes" string="Notes"/>
+                                    <field name="notes" nolabel="1"/>
+                                </group>
+                            </group>
+                            
+                            <group string="Files">
+
+                                <field name="attachment_ids" widget="many2many_binary"/>
+                                
+                                <div>
+                                    <label for="report_attachment_ids" string="ATTACH REPORT"/>
+                                    <field name="report_attachment_ids" widget="many2many_binary"/>
+                                </div>
+                            </group>
+                        </form>
+                    </field>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    
+    <!-- List View (main) -->
+    <record id="view_stakeholder_engagement_list" model="ir.ui.view">
+        <field name="name">stakeholder.engagement.list</field>
+        <field name="model">stakeholders.engagement.plan</field>
+        <field name="arch" type="xml">
+            <list string="Stakeholder Engagement Plans">
+                <field name="name"/>
+                <field name="year"/>
+                <field name="state" widget="badge" decoration-info="state == 'draft'" 
+                    decoration-warning="state == 'submitted'" decoration-success="state == 'approved'"
+                    decoration-danger="state == 'rejected'"/>
+            </list>
+        </field>
+    </record>
+    
+    <!-- Search View -->
+    <record id="view_stakeholder_engagement_search" model="ir.ui.view">
+        <field name="name">stakeholder.engagement.search</field>
+        <field name="model">stakeholders.engagement.plan</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="year"/>
+                <field name="state"/>
+                <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+                <filter string="Submitted" name="submitted" domain="[('state','=','submitted')]"/>
+                <filter string="Approved" name="approved" domain="[('state','=','approved')]"/>
+                <separator/>
+                <filter string="All" name="all" domain="[]"/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Action -->
+    <record id="action_stakeholder_engagement" model="ir.actions.act_window">
+        <field name="name">Stakeholder Engagement Plans</field>
+        <field name="res_model">stakeholders.engagement.plan</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create your first Stakeholder Engagement Plan
+            </p>
+        </field>
+    </record>
+</odoo>

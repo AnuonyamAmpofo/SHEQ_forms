@@ -48,3 +48,12 @@ access_sheq_document_template_manager,sheq.document.template.manager,model_sheq_
 
 access_sheq_audit_user,sheq.audit.user,model_sheq_audit,base.group_user,1,1,1,0
 access_sheq_audit_manager,sheq.audit.manager,model_sheq_audit,base.group_system,1,1,1,1
+
+access_site_inspection_user,site.inspection.user,model_site_inspection,base.group_user,1,1,1,0
+access_site_inspection_manager,site.inspection.manager,model_site_inspection,base.group_system,1,1,1,1
+
+access_stakeholder_engagement_user,stakeholder.engagement.plan.user,model_stakeholders_engagement_plan,base.group_user,1,1,1,0
+access_stakeholder_engagement_manager,stakeholder.engagement.plan.manager,model_stakeholders_engagement_plan,base.group_system,1,1,1,1
+
+access_stakeholder_engagement_line,stakeholder.engagement.line,model_stakeholder_engagement_line,base.group_user,1,1,1,1
+access_stakeholder_engagement_line_manager,stakeholder.engagement.line.manager,model_stakeholder_engagement_line,base.group_system,1,1,1,1
